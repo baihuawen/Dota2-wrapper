@@ -1,7 +1,8 @@
 # DotA2-Wrapper
 Wrapper for the DotA2 WebAPI written in Java. It greatly simplifies the process of performing automatic API-requests, as well as combining the responses and deserializing them into Java objects. It also offers a number of additional features, such as player search through Dotabuff and retrieval of Steam Community data. Possibly a very solid stepping stone for your new DotA2-application. 
 
-To start using it, just include it through Maven by adding the following XML-snippet to your pom.xml: 
+<br>To start using it, just include it through Maven by adding the following XML-snippet to your pom.xml: 
+
 ```
         <dependency>
           <groupId>com.github.kaisle</groupId>
@@ -10,27 +11,26 @@ To start using it, just include it through Maven by adding the following XML-sni
         </dependency>
 
 ```
-Then get your API-key at: http://steamcommunity.com/dev/apikey. 
-
+<br>Then get your API-key at: http://steamcommunity.com/dev/apikey. 
 Finally, add your key to the apiKey-field of the Defines class (empty by default, must be specified): 
 ```
         Defines.apiKey = <your_api_key>; 
 ```
-Now you have access to all the functionality of this wrapper.
-
+<br>Now you have access to all the functionality of this wrapper.
 Before proceeding, make sure you have read the terms for using the API: http://steamcommunity.com/dev/apiterms
 
 ##Getting the last 500 matches for a player (if you know his/her steam-id)
 
 If you already know the 32-bit or 64-bit steam-id of the player, this is very easy. Just create a new MatchRetriever-object
 and invoke the method getAllMatchesForPlayer, specifying the id as parameter. For instance, to get the matches for a player with id 86745912:
-
+```
         MatchRetriever matchRetriever = new MatchRetriever(); 
         List<MatchResponseDetails> matches = matchRetriever.getLightMatchData("86745912"); 
-
-After running the above code the wrapper will call the API 5 times (100 matches per request) to get the last 500 matches, represented as MatchResponseDetails-objects.
-A MatchResponseDetails object contains the following information (courtesy of http://dev.dota2.com/showthread.php?t=58317): 
-        match_id - the numeric match ID
+```
+<br>After running the above code the wrapper will call the API 5 times (100 matches per request) to get the last 500 matches, represented as MatchResponseDetails-objects.
+<br>A MatchResponseDetails object contains the following information (courtesy of http://dev.dota2.com/showthread.php?t=58317): 
+``` 
+    	match_id - the numeric match ID
         match_seq_num - the match's sequence number - the order in which matches are recorded
         start_time - date in UTC seconds since Jan 1, 1970 (unix time format)
         lobby_type - the type of lobby; see: https://github.com/kronusme/dota2-ap...a/lobbies.json
@@ -38,14 +38,17 @@ A MatchResponseDetails object contains the following information (courtesy of ht
                 account_id - the player's 32-bit Steam ID - will be set to "4294967295" if the player has set their account to private. 
                 player_slot - an 8-bit unsigned int: if the left-most bit is set, the player was on dire. the two right-most bits represent the player slot (0-4).
                 hero_id - the numeric ID of the hero that the player used (https://github.com/kronusme/dota2-api/blob/master/data/heroes.json)
-
-To get the full details of a match the wrapper needs to call the API for that specific match. This is done by specifying the match_id.
-For instance, to get the full details of match with id 1404838670: 
+``` 
+<br>To get the full details of a match the wrapper needs to call the API for that specific match. This is done by specifying the match_id.
+<br>For instance, to get the full details of match with id 1404838670: 
+``` 
 
         Match match = matchRetriever.getMatchDetails(1404838670); 
+``` 
 
-Now you have access to a Match object which contains all the available data (courtesy of http://dev.dota2.com/showthread.php?t=58317)
+<br>Now you have access to a Match object which contains all the available data (courtesy of http://dev.dota2.com/showthread.php?t=58317)
 
+``` 
         radiant_win - true if radiant won, false otherwise
         duration -  the total time in seconds the match ran for
 	start_time - date in UTC seconds since Jan 1, 1970 (unix time format)
@@ -106,12 +109,13 @@ Now you have access to a Match object which contains all the available data (cou
                         
                         
                 
+``` 
 
-To get this amount of details for all of the player's last 500 matches, use the following command: 
-
+<br>To get this amount of details for all of the player's last 500 matches, use the following command: 
+``` 
         matchRetriever.getAllMatchesForPlayer(<steam-id>); 
-
-Bear in mind though that this request will take a lot of time to process (the wrapper has to call the API 505 times). 
+``` 
+<br>Bear in mind though that this request will take a lot of time to process (the wrapper has to call the API 505 times). 
 
 ##Getting the last 500 matches for a player (IF YOU DON'T KNOW HIS/HER STEAM-ID)
 
