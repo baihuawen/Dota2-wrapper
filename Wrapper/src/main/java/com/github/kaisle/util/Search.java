@@ -47,8 +47,6 @@ public class Search {
 								continue;
 							}
 							players.add(new PlayerDetails(id, name));
-							System.out.println(name);
-							System.out.println(id);
 						}
 					}
 				}
