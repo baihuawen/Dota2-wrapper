@@ -42,24 +42,23 @@ and invoke the method getAllMatchesForPlayer, specifying the id as parameter. Fo
 <br>To get the full details of a match the wrapper needs to call the API for that specific match. This is done by specifying the match_id.
 <br>For instance, to get the full details of match with id 1404838670: 
 ``` 
-
         Match match = matchRetriever.getMatchDetails(1404838670); 
 ``` 
 
 <br>Now you have access to a Match object which contains all the available data (courtesy of http://dev.dota2.com/showthread.php?t=58317)
 
 ``` 
-        radiant_win - true if radiant won, false otherwise
-        duration -  the total time in seconds the match ran for
+    radiant_win - true if radiant won, false otherwise
+    duration -  the total time in seconds the match ran for
 	start_time - date in UTC seconds since Jan 1, 1970 (unix time format)
 	match_id - the numeric match ID
 	match_seq_num - the match's sequence number - the order in which matches are recorded
 	tower_status_radiant - an 11-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Tower_Status
-        tower_status_dire - an 11-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Tower_Status
-        barracks_status_radiant - a 6-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Barracks_Status
-        barracks_status_dire - a 6-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Barracks_Status
+    tower_status_dire - an 11-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Tower_Status
+    barracks_status_radiant - a 6-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Barracks_Status
+    barracks_status_dire - a 6-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Barracks_Status
 	cluster - replay-id, see http://dev.dota2.com/showthread.php?t=58317 under REPLAYS
-        first_blood_time - the time in seconds at which first blood occurred
+    first_blood_time - the time in seconds at which first blood occurred
 	lobby_type -  the type of lobby; see: https://github.com/kronusme/dota2-ap...a/lobbies.json
 	int human_players - the number of human players in the match
 	leagueid - the league this match is from
