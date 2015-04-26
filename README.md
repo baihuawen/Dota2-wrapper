@@ -135,7 +135,7 @@ Specify the id to your MatchRetriever, e.g. for id 1389940008:
         MatchRetriever matchRetriever = new MatchRetriever();
         Match match = matchRetriever.getMatchDetails(1389940008);
 
-##Getting all leagues available
+##Getting league data
 
 To get all the leagues currently available, invoke: 
 ```
@@ -173,13 +173,21 @@ To get all the leagues currently available, invoke:
 	}
 ```
 
-##Getting matches for a specific league
-
 ##Getting community details about a player
+
+To get community details about a player, just specify the 32-bit or 64-bit steam-id for that player:
+```
+	PlayerDetails communityDetails = Utility.getPlayerInfo(<steam-id>); 
+```
+<br> The PlayerDetails object contains data such as the nickname/persona-name, a URL for the player avatar, a URL for the player profile and the time since the player has last logged off in UNIX-time. A full description can be found here: https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29. 
 
 ##Checking whether a player has shared match data
 
-##Getting data in XML
+Simply specify the player's 32-bit or 64-bit steam-id: 
+```
+	boolean isProfilePrivate = Utility.isProfilePrivate(<steam-id>); 
+```
+
 
 
 
