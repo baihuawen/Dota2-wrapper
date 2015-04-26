@@ -65,8 +65,7 @@ and invoke the method getAllMatchesForPlayer, specifying the id as parameter. Fo
 	positive_votes - the number of thumbs up the game has received
 	negative_votes - the number of thumbs down the game has received
 	game_mode - a number representing the game mode of this match; see https://github.com/kronusme/dota2-ap...data/mods.json
-	
-        players- an array of players (Player-object) with the following properties: 
+    players- an array of players (Player-object) with the following properties: 
                 account_id - the player's 32-bit Steam ID - will be set to "4294967295" if the player has set their account to private.
                 player_slot - an 8-bit unsigned int: if the left-most bit is set, the player was on dire. the two right-most bits represent the player slot (0-4)
                 hero_id - the numeric ID of the hero that the player used.
