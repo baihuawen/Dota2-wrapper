@@ -7,7 +7,7 @@ Wrapper for the DotA2 WebAPI written in Java. It greatly simplifies the process 
         <dependency>
           <groupId>com.github.kaisle</groupId>
            <artifactId>DotA2-Wrapper</artifactId>
-           <version>1.0.0</version>
+           <version>1.0.1</version>
         </dependency>
 
 ```
@@ -126,7 +126,25 @@ Bear in mind though that this request will take a lot of time to process (the wr
 ```
 <br><b><i>Can I get older matches?</i></b>
 <br>Nope. Only the last 500 matches for each player is stored in Valve's database. To get older matches, you would need to use data from a third-party site which has those stored in their own database, such as Dotabuff. 
-##Getting the last 500 matches for a player (If you don't know his/her steam-id)
+##Getting the last 500 matches for a player (if you don't know his/her steam-id)
+
+Use the Search-object. The Search-object scours Dotabuff.com for data so use it moderately/wisely and make sure to credit the Dotabuff-guys for the search results that you receive. To use it, simply use the search-method and put your search-string as a parameter, then retrieve the results from the fields of the search-object. You can put the nickname, steam-profile-link or steam-id as search parameters. If there is just one search result, the DotA2-matches for that player is stored as Match-objects in the private field called matches. If there are several search results (e.g. for the keyword <i>s4</i> there will be loads of matches/results), the nicknames and steam-id's of those players are stored as PlayerDetails-objects in the field called players. E.g. to search for players with the nickname "Dendi":
+```
+	Search search = new Search();
+	search.search("Dendi");
+	List<MatchResponseDetails> matchResults = search.getMatches(); // Will be empty in this case, as there are lots of players with the nickname "Dendi"
+	List<Players> players = search.getPlayers(); // Will contain all the players whose nicknames are affiliated with "Dendi"
+```
+You can then evaluate the results from the list of players and get the last 500 DotA2-matches for the one that you choose, e.g. if you choose the first result:
+```
+	String relevantPlayerSteamId = players.get(0).getSteamid; // Get steam-id
+	MatchRetriever matchRetriever = new MatchRetriever();
+	List<Match> relevantPlayerMatches = matchRetriever.getAllMatchesForPlayer(relevantPlayerSteamId);
+```
+If there was just one search result, the above is not neccesary. The search-object will automatically fetch the matches for the player and they can be retrieved like this:
+```
+	List<Match> relevantPlayerMatches = search.getMatches(); 
+```
 
 ##Getting the full details of a match
 
