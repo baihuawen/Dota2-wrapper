@@ -22,7 +22,7 @@ Before proceeding, make sure you have read the terms for using the API: http://s
 ##Getting the last 500 matches for a player (if you know his/her steam-id)
 
 If you already know the 32-bit or 64-bit steam-id of the player, this is very easy. Just create a new MatchRetriever-object
-and invoke the method getAllMatchesForPlayer, specifying the id as parameter. For instance, to get the matches for a player with id 86745912:
+and invoke the method getAllMatchesForPlayer, specifying the id as parameter. For instance, to get the matches for a player with id <i>86745912<i>:
 ```
         MatchRetriever matchRetriever = new MatchRetriever(); 
         List<MatchResponseDetails> matches = matchRetriever.getLightMatchData("86745912"); 
@@ -40,7 +40,7 @@ and invoke the method getAllMatchesForPlayer, specifying the id as parameter. Fo
                 hero_id - the numeric ID of the hero that the player used (https://github.com/kronusme/dota2-api/blob/master/data/heroes.json)
 ``` 
 <br>To get the full details of a match the wrapper needs to call the API for that specific match. This is done by specifying the match_id.
-<br>For instance, to get the full details of match with id 1404838670: 
+<br>For instance, to get the full details of match with id <i>1404838670<i>: 
 ``` 
         Match match = matchRetriever.getMatchDetails(1404838670); 
 ``` 
@@ -114,7 +114,7 @@ and invoke the method getAllMatchesForPlayer, specifying the id as parameter. Fo
 ``` 
         matchRetriever.getAllMatchesForPlayer(<steam-id>); 
 ``` 
-<br>Bear in mind though that this request will take a lot of time to process (the wrapper has to call the API 505 times).
+Bear in mind though that this request will take a lot of time to process (the wrapper has to call the API 505 times).
 <br>
 <br><b><i>Can I get older matches?</i></b>
 <br>Nope. Only the last 500 matches for each player is stored in Valve's database. To get older matches, you would need to use data from a third-party site which has those stored in their own database, such as Dotabuff. 
