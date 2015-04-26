@@ -112,10 +112,18 @@ and invoke the method getAllMatchesForPlayer, specifying the id as parameter. Fo
 
 <br>To get this amount of details for all of the player's last 500 matches, use the following command: 
 ``` 
-        matchRetriever.getAllMatchesForPlayer(<steam-id>); 
+        List<Match> matches = matchRetriever.getAllMatchesForPlayer(<steam-id>); 
 ``` 
 Bear in mind though that this request will take a lot of time to process (the wrapper has to call the API 505 times).
-<br>
+
+<br>To get all the match details of an array of players, put each of their id's in an array of strings and invoke the following command: 
+```
+	List<Match> matches = matchRetriever.getAllMatchesForPlayers(<your-id-array>); 
+```
+<br>To save all matches for a player as an XML-file on your local drive: 
+```
+	matchRetriever.getAllMatchesForPlayerInXML(<steam-id>, <path to save location>); 
+```
 <br><b><i>Can I get older matches?</i></b>
 <br>Nope. Only the last 500 matches for each player is stored in Valve's database. To get older matches, you would need to use data from a third-party site which has those stored in their own database, such as Dotabuff. 
 ##Getting the last 500 matches for a player (IF YOU DON'T KNOW HIS/HER STEAM-ID)
@@ -128,6 +136,42 @@ Specify the id to your MatchRetriever, e.g. for id 1389940008:
         Match match = matchRetriever.getMatchDetails(1389940008);
 
 ##Getting all leagues available
+
+To get all the leagues currently available, invoke: 
+```
+	LeagueRetriever leagueRetriever() = new LeagueRetriever();
+	List<League> leagues = leagueRetriever.getAllLeagues(); 
+```
+<br> A league-object has the following properties: 
+```
+	name - Name of league. 
+	leagueid - ID of league. 
+	description - Description. 
+	tournament_url - URL to the site of the league.
+	itemdef
+```
+
+<br>To get all the matches for a specific league, specify the league-id, e.g. for the league with id <i>2</i>: 
+```
+	MatchRetriever matchRetriever = new MatchRetriever();
+	List<Match> leagueMatches = matchRetriever.getAllMatchesForLeague("2"); 
+```
+<br>To get all matches for all leagues (takes a while): 
+```
+	List<Match> allLeagueMatches = matchRetriever.getAllLeagueMatches(); 
+```
+<br> To get all matches for a specific set of leagues: 
+```
+	List<Match> specificLeagueMatches = matchRetriever.getSpecificLeagueMatches(<java.util.List of relevant league-id's>)
+```
+<br>Save all matches for a specific set of leagues as XML:
+```
+	LeagueRetriever leagueRetriever = new LeagueRetriever();
+	List<Document> specificLeagueMatches = leagueRetriever.getSpecificLeagueMatchesAsXML(<java.util.List of relevant league-id's>);
+	for (Document document: specificLeagueMatches) {
+	Utility.saveDocumentToFile(document, <path to save location>); 
+	}
+```
 
 ##Getting matches for a specific league
 
