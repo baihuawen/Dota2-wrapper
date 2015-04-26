@@ -126,7 +126,7 @@ Bear in mind though that this request will take a lot of time to process (the wr
 ```
 <br><b><i>Can I get older matches?</i></b>
 <br>Nope. Only the last 500 matches for each player is stored in Valve's database. To get older matches, you would need to use data from a third-party site which has those stored in their own database, such as Dotabuff. 
-##Getting the last 500 matches for a player (IF YOU DON'T KNOW HIS/HER STEAM-ID)
+##Getting the last 500 matches for a player (If you don't know his/her steam-id)
 
 ##Getting the full details of a match
 
