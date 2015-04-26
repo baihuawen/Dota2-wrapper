@@ -134,9 +134,13 @@ public class Query {
 	 * @param con
 	 *            The connection to prepare.
 	 */
-	public void prepareConnection(HttpURLConnection con)
-			throws ProtocolException {
-		con.setRequestMethod("GET");
+	public void prepareConnection(HttpURLConnection con) {
+		try {
+			con.setRequestMethod("GET");
+		} catch (ProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		con.setDoInput(true);
 		con.setUseCaches(false);
 		con.setRequestProperty("Connection", "close");

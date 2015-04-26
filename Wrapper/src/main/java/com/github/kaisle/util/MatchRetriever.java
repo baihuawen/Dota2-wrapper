@@ -296,8 +296,6 @@ public class MatchRetriever {
 	 * @param path
 	 *            The path leading to the location where the XML-document should
 	 *            be saved.
-	 * @return An XML-document containing all the player's matches with the
-	 *         steam-account-ID set as root.
 	 */
 	public void getAllMatchesForPlayerInXML(String accountID, String path) {
 		if (Utility.isProfilePrivate(accountID)) {

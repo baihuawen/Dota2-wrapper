@@ -27,7 +27,7 @@ public class MatchComponentFactory {
 	/**
 	 * Create a new AdditionalUnit object.
 	 * @param player - The player which has the unit. 
-	 * @return
+	 * @return The additional units. 
 	 */
 	public static AdditionalUnit getAdditionalUnits(Element player) {
 
@@ -58,7 +58,7 @@ public class MatchComponentFactory {
 	/**
 	 * Create a new Pick_Ban object.
 	 * @param root - The match.
-	 * @return
+	 * @return The picks and bans.
 	 */
 	public static List<Pick_Ban> getPicksAndBans(Element root) {
 
@@ -84,7 +84,7 @@ public class MatchComponentFactory {
 	 * Create a new TournamentDetails object.
 	 * @param root - The match.
 	 * @param picks_bans_list - The picks and bans.
-	 * @return
+	 * @return The tournament details.
 	 */
 	public static TournamentDetails getTournamentDetails(Element root,
 			List<Pick_Ban> picks_bans_list) {
@@ -116,7 +116,7 @@ public class MatchComponentFactory {
 	/**
 	 * Create a new list of Ability objects.
 	 * @param player - The player, which has learned the abilities.
-	 * @return
+	 * @return A list of abilities. 
 	 */
 	public static List<Ability> getAbilities(Element player) {
 
@@ -140,7 +140,7 @@ public class MatchComponentFactory {
 	 * @param player - The player.
 	 * @param abilities - The abilities.
 	 * @param additionalUnit - Any additional unit (Lone Druid Spirit Bear). 
-	 * @return
+	 * @return The player.
 	 */
 	public static Player getPlayer(Element player, List<Ability> abilities,
 			AdditionalUnit additionalUnit) {
@@ -187,7 +187,7 @@ public class MatchComponentFactory {
 	 * @param players - The players in the match. 
 	 * @param root - The match root. 
 	 * @param tournamentDetails - The tournament details, if the match is part of a tournament.  
-	 * @return
+	 * @return The match.
 	 */
 	public static Match getMatch(List<Player> players, Element root,
 			TournamentDetails tournamentDetails) {
@@ -228,7 +228,7 @@ public class MatchComponentFactory {
 	/**
 	 * Create a new MatchResponseDetails object.
 	 * @param match - The match root.
-	 * @return
+	 * @return The match.
 	 */
 	public static MatchResponseDetails getMatchResponseDetails(Element match) {
 

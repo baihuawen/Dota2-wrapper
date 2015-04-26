@@ -14,12 +14,13 @@ public class Defines {
 	public static final String lobbyTypeURL = "https://raw.githubusercontent.com/kronusme/dota2-api/master/data/lobbies.json";
 	public static final String steamProfileBaseURL = "http://steamcommunity.com/id";
 	public static final String resolveVanityURL = " http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/";
-	public static final String searchPlayerURL = "http://www.dotabuff.com/search?";
+	public static final String searchPlayerURLSteam = "http://steamcommunity.com/search/";
+	public static final String searchPlayerURLDotabuff = "http://www.dotabuff.com/search?"; 
 	public static final String smallPic = "sb.png";
 	public static final String mediumPic = "lg.png";
 	public static final String horiPic = "full.png";
 	public static final String vertPic = "vert.jpg";
-	public static String apiKey; 
+	public static String apiKey;
 	
 	public void setAPIKey(String myApiKey) {
 		apiKey = myApiKey; 

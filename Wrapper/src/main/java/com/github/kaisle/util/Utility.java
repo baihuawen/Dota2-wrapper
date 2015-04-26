@@ -67,58 +67,6 @@ public class Utility {
 	}
 	
 	/**
-	 * Search for a player by a nickname/persona-name. The players that match are returned in a HashMap, containing their names and id's. 
-	 * @param nickname The player's nickname/persona-name, eg. Sing-Sing. 
-	 * @return A map of the matches, containing the names and id's. 
-	 */
-	public static HashMap<String, Long> searchNickname(String nickname) {
-		HashMap<String, Long> mapping = new HashMap<String, Long>();
-		try {
-			Response response = Jsoup
-					.connect(
-							Defines.searchPlayerURL + "q=" + nickname
-									+ "&commit=Search")
-					.ignoreContentType(true)
-					.userAgent(
-							"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/37.0.1")
-					.referrer("http://www.google.com").timeout(12000)
-					.followRedirects(true).execute();
-			org.jsoup.nodes.Document doc = response.parse();
-			if (doc.title().substring(0, 6).equals("Search")) {
-				Elements results = doc.getElementsByClass("record")
-						.not(".team");
-				for (Element result : results) {
-					List<Element> children = result.children();
-					for (Element child : children) {
-						if (child.className().equals("name")) {
-							Element nameElement = child.child(0);
-							String name = nameElement.ownText();
-							long id = new Long(nameElement.attr("href")
-									.substring(9));
-							if (Utility.isProfilePrivate(new Long(id)
-									.toString())) {
-								continue;
-							}
-							mapping.put(name, id);
-							System.out.println(name);
-							System.out.println(id);
-						}
-					}
-				}
-			} else {
-				mapping.put(nickname, new Long(response.url().toString()
-						.substring(32)));
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return mapping;
-
-	}
-	
-	/**
 	 * Test whether a player has shared his or her match data. 
 	 * @param accountID The 32-bit or 64-bit steam-account-id of the player. 
 	 * @return True if the has not shared match-data, false if he has.
@@ -132,41 +80,6 @@ public class Utility {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Get a list of matches based on either a persona-name, a 64 or 32-bit
-	 * steam-account-id or a steamcommunity profile-link. If there are several
-	 * people with the given persona-name, those names are printed out with
-	 * their respective steam-account-id's and null is returned.
-	 * @param searchString
-	 *            The string that should be searched.
-	 * @return A list of the last 500 matches for the player.
-	 */
-	public static List<MatchResponseDetails> getMatches(String searchString) {
-		MatchRetriever matchRetriever = new MatchRetriever();
-		try {
-			Long.parseLong(searchString);
-			return matchRetriever.getLightMatchData(searchString);
-		} catch (NumberFormatException e) {
-			if (searchString.contains("steamcommunity.com/profiles/")) {
-				int lastSlash = searchString.lastIndexOf("/");
-				String profileString = searchString.substring(lastSlash + 1);
-				try {
-					return matchRetriever.getLightMatchData(profileString);
-				} catch (NumberFormatException e1) {
-					return matchRetriever.getLightMatchData(Utility
-							.getSteamIdFromName(profileString));
-				}
-			} else {
-				HashMap<String, Long> map = Utility
-						.searchNickname(searchString);
-				for (String name : map.keySet()) {
-					System.out.println("Name: " + name );
-				}
-			}
-		}
-		return null;
 	}
 	
 	/**
@@ -201,6 +114,5 @@ public class Utility {
 				playerPersona, playerLogOff, playerProfile, playerAvatar, null,
 				null, playerPersonaState);
 	}
-	
 
 }

@@ -11,6 +11,12 @@ public class PlayerDetails {
 	private String avatarMedium;
 	private String avatarFull;
 	private int personaState;
+	
+	public PlayerDetails(long steamid, String personaName) {
+		this.steamid = steamid; 
+		this.personaName = personaName; 
+	}
+	
 	public PlayerDetails(long steamid, int communityVisibilityState,
 			String personaName, String lastLogOff, String profileURL,
 			String avatar, String avatarMedium, String avatarFull,

@@ -10,7 +10,7 @@ public class ParameterFactory {
 	
 	/**
 	 * Create a new HashMap with a pre-configured XML-parameter mapping. 
-	 * @return
+	 * @return e
 	 */
 	public static HashMap<String, String> getParametersWithXML() {
 		HashMap<String, String> params = new HashMap<String, String>(); 

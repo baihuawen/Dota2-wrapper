@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.kaisle</groupId>
 	<artifactId>DotA2-Wrapper</artifactId>
-	<version>1.0.0</version>
 	<packaging>jar</packaging>
+	<version>1.0.1</version>
 	<name>DotA2-Wrapper</name>
 	<description>A wrapper for the DotA2 WebAPI written in Java.</description>
-	<url>http://anders-borum.dk</url>
+	<url>https://github.com/Kaisle/DotA2-Wrapper</url>
 	<licenses>
 		<license>
 			<name>MIT License</name>
@@ -16,17 +16,24 @@
 	</licenses>
 	<developers>
 		<developer>
-			<name>Anders Borum</name>
+			<name>Soggz</name>
 			<email>asoggiorno@gmail.com</email>
 			<organization></organization>
 			<organizationUrl></organizationUrl>
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git:git@github.com:juven/git-demo.git</connection>
-		<developerConnection>scm:git:git@github.com:juven/git-demo.git</developerConnection>
-		<url>git@github.com:juven/git-demo.git</url>
+		<connection>scm:git:git@github.com:Kaisle/DotA2-Wrapper.git</connection>
+		<developerConnection>scm:git:git@github.com:Kaisle/DotA2-Wrapper.git</developerConnection>
+		<url>git@github.com:Kaisle/DotA2-Wrapper.git</url>
 	</scm>
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -34,8 +41,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<version>4.11</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jdom</groupId>
@@ -95,4 +101,66 @@
 			<version>1.7.3</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- -  <plugin>
+      <groupId>org.sonatype.plugins</groupId>
+      <artifactId>nexus-staging-maven-plugin</artifactId>
+      <version>1.6.4</version>
+      <extensions>true</extensions>
+      <configuration>
+        <nexusUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2</nexusUrl>
+        <serverId>nexus-releases</serverId>
+      </configuration>
+    </plugin>-->
+		</plugins>
+	</build>
 </project>
