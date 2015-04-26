@@ -115,8 +115,7 @@ and invoke the method getAllMatchesForPlayer, specifying the id as parameter. Fo
         matchRetriever.getAllMatchesForPlayer(<steam-id>); 
 ``` 
 <br>Bear in mind though that this request will take a lot of time to process (the wrapper has to call the API 505 times). 
-
-<br> Only the last 500 matches for each player is stored in Valve's database. To get older matches, you would need to use data from a third-party site which has those stored in their own database, such as Dotabuff. 
+Only the last 500 matches for each player is stored in Valve's database. To get older matches, you would need to use data from a third-party site which has those stored in their own database, such as Dotabuff. 
 ##Getting the last 500 matches for a player (IF YOU DON'T KNOW HIS/HER STEAM-ID)
 
 ##Getting the full details of a match
