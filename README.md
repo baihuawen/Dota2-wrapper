@@ -133,13 +133,13 @@ Use the Search-object. The Search-object scours Dotabuff.com for data so use it 
 	Search search = new Search();
 	search.search("Dendi");
 	List<MatchResponseDetails> matchResults = search.getMatches(); // Will be empty in this case, as there are lots of players with the nickname "Dendi"
-	List<Players> players = search.getPlayers(); // Will contain all the players whose nicknames are affiliated with "Dendi"
+	List<PlayerDetails> players = search.getPlayers(); // Will contain all the players whose nicknames are affiliated with "Dendi"
 ```
 You can then evaluate the results from the list of players and get the last 500 DotA2-matches for the one that you choose, e.g. if you choose the first result:
 ```
-	String relevantPlayerSteamId = players.get(0).getSteamid; // Get steam-id
+	Long relevantPlayerSteamId = players.get(0).getSteamid; // Get steam-id as a Long
 	MatchRetriever matchRetriever = new MatchRetriever();
-	List<Match> relevantPlayerMatches = matchRetriever.getAllMatchesForPlayer(relevantPlayerSteamId);
+	List<Match> relevantPlayerMatches = matchRetriever.getAllMatchesForPlayer(relevantPlayerSteamId.toString()); // Convert Long to String and get all matches for the player  
 ```
 If there was just one search result, the above is not neccesary. The search-object will automatically fetch the matches for the player and they can be retrieved like this:
 ```
