@@ -22,7 +22,7 @@ Before proceeding, make sure you have read the terms for using the API: http://s
 ##Getting the last 500 matches for a player (if you know his/her steam-id)
 
 If you already know the 32-bit or 64-bit steam-id of the player, this is very easy. Just create a new MatchRetriever-object
-and invoke the method getAllMatchesForPlayer, specifying the id as parameter. For instance, to get the matches for a player with id <i>86745912<i>:
+and invoke the method getAllMatchesForPlayer, specifying the id as parameter. For instance, to get the matches for a player with id <i>86745912</i>:
 ```
         MatchRetriever matchRetriever = new MatchRetriever(); 
         List<MatchResponseDetails> matches = matchRetriever.getLightMatchData("86745912"); 
