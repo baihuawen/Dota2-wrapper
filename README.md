@@ -40,7 +40,7 @@ and invoke the method getAllMatchesForPlayer, specifying the id as parameter. Fo
                 hero_id - the numeric ID of the hero that the player used (https://github.com/kronusme/dota2-api/blob/master/data/heroes.json)
 ``` 
 <br>To get the <b>full details</b> of a match the wrapper needs to call the API for that specific match. This is done by specifying the match_id.
-<br>For instance, to get the full details of match with id <i>1404838670<i>: 
+<br>For instance, to get the full details of match with id <i>1404838670</i>: 
 ``` 
         Match match = matchRetriever.getMatchDetails(1404838670); 
 ``` 
