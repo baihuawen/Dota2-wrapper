@@ -10,8 +10,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.github.kaisle.data.HeroResponse;
 import org.jdom2.Document;
 import org.jdom2.output.XMLOutputter;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -113,6 +117,52 @@ public class Utility {
 		return new PlayerDetails(playerSteamID, playerVisibility,
 				playerPersona, playerLogOff, playerProfile, playerAvatar, null,
 				null, playerPersonaState);
+	}
+
+	/**
+	 * Get portraits and names for each hero, represented by a HeroResponse object. Each object is bound to the corresponding hero id.
+	 * @return A map of hero id's and the corresponding hero details (name/portrait urls)
+	 */
+	public static HashMap<Integer, HeroResponse> getHeroDetailsFromId() {
+		HashMap<Integer, HeroResponse> hero_assets = new HashMap<Integer, HeroResponse>();
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("language", "en_us");
+		params.put("format", "xml");
+		Document input = new Query().queryAPI(Defines.heroURL, params);
+		for (org.jdom2.Element hero: input.getRootElement().getChild("heroes").getChildren("hero")) {
+			String name = hero.getChild("name").getText();
+			String sub = name.substring(name.indexOf("_") + 1);
+			sub = sub.substring(sub.indexOf("_") + 1);
+			sub = sub.substring(sub.indexOf("_") + 1);
+			String smallPicURL = Defines.imageURL + sub + "_" + Defines.smallPic;
+			String mediumPicURL = Defines.imageURL + sub + "_" + Defines.mediumPic;
+			String largeHorizontalPicURL = Defines.imageURL + sub + "_" + Defines.horiPic;
+			String largeVerticalPicURL = Defines.imageURL + sub + "_" + Defines.vertPic;
+			hero_assets.put(new Integer(hero.getChild("id").getText()), new HeroResponse(hero.getChild("id").getText(), name, hero.getChild("localized_name").getText(), smallPicURL, mediumPicURL, largeHorizontalPicURL, largeVerticalPicURL));
+		}
+
+		return hero_assets;
+
+	}
+
+	/**
+	 * Get the type for each lobby, represented as a String. The type is mapped to the lobby id String.
+	 */
+	public static HashMap<Integer, String> getLobbyTypeFromId() {
+		HashMap<Integer, String> lobby_mapping = new HashMap<Integer, String>();
+		JSONObject lobbies = new Query().queryAPIForJSON(Defines.lobbyTypeURL, new HashMap<String, String>());
+		try {
+			JSONArray lobbyTypes = lobbies.getJSONArray("lobbies");
+			for (int i = 0; i < lobbyTypes.length(); i++) {
+				String id = lobbyTypes.getJSONObject(i).get("id").toString();
+				String name = lobbyTypes.getJSONObject(i).get("name").toString();
+				lobby_mapping.put(new Integer(id), name);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lobby_mapping;
 	}
 
 }

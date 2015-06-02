@@ -206,6 +206,32 @@ Simply specify the player's 32-bit or 64-bit steam-id:
 	boolean isProfilePrivate = Utility.isProfilePrivate(<steam-id>); 
 ```
 
+##Getting hero names and portraits
+
+Load the hero details map and specify the hero id:
+
+    HashMap<Integer, HeroResponse> heroDetailsMap = Utility.getHeroDetailsFromId();
+    HeroResponse heroDetails = hero_details.get(<hero_id>);
+    System.out.println(heroDetails.getDisplayName()) // prints out name of hero, e.g. Axe. 
+    System.out.println(heroDetails.getSmallPicURL()); // prints out the url to retrieve a small png with the hero portrait. 
+
+The HeroResponse object returned in the map has the following properties: 
+
+    id - The id of the hero. 
+    name - The full name of the hero entity, e.g. npc_dota_hero_antimage. 
+    displayName - The name of the hero, e.g. Anti-Mage.
+    smallPicURL - URL to small hero portrait in png-format. 
+    mediumPicURL - Medium png. 
+    largeHorizontalPicURL - Large png. 
+    largeVerticalPicURL - Large jpg. 
+
+##Getting lobby types
+
+Specify the lobby id: 
+    
+    HashMap<Integer, String> lobby_map = Utility.getLobbyTypeFromId(); 
+    String lobbyType = lobby_map.get(<lobby_id>); 
+
 
 
 
