@@ -212,7 +212,7 @@ Load the hero details map and specify the hero id:
 
     HashMap<Integer, HeroResponse> heroDetailsMap = Utility.getHeroDetailsFromId();
     HeroResponse heroDetails = hero_details.get(<hero_id>);
-    System.out.println(heroDetails.getDisplayName()) // prints out name of hero, e.g. Axe. 
+    System.out.println(heroDetails.getDisplayName()); // prints out name of hero, e.g. Axe. 
     System.out.println(heroDetails.getSmallPicURL()); // prints out the url to retrieve a small png with the hero portrait. 
 
 The HeroResponse object returned in the map has the following properties: 
