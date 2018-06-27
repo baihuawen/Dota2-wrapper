@@ -19,7 +19,7 @@ Finally, add your key to the apiKey-field of the Defines class (empty by default
 <br>Now you have access to all the functionality of this wrapper.
 Before proceeding, make sure you have read the terms for using the API: http://steamcommunity.com/dev/apiterms
 
-##Getting the last 500 matches for a player (if you know his/her steam-id)
+## Getting the last 500 matches for a player (if you know his/her steam-id)
 
 If you already know the 32-bit or 64-bit steam-id of the player, this is very easy. Just create a new MatchRetriever-object
 and invoke the method getAllMatchesForPlayer, specifying the id as parameter. For instance, to get the matches for a player with id <i>86745912</i>:
@@ -146,14 +146,14 @@ If there was just one search result, the above is not neccesary. The search-obje
 	List<Match> relevantPlayerMatches = search.getMatches(); 
 ```
 
-##Getting the full details of a match
+## Getting the full details of a match
 
 Specify the id to your MatchRetriever, e.g. for id 1389940008: 
 
         MatchRetriever matchRetriever = new MatchRetriever();
         Match match = matchRetriever.getMatchDetails(1389940008);
 
-##Getting league data
+## Getting league data
 
 To get all the leagues currently available, invoke: 
 ```
@@ -191,7 +191,7 @@ To get all the leagues currently available, invoke:
 	}
 ```
 
-##Getting community details about a player
+## Getting community details about a player
 
 To get community details about a player, just specify the 32-bit or 64-bit steam-id for that player:
 ```
@@ -199,14 +199,14 @@ To get community details about a player, just specify the 32-bit or 64-bit steam
 ```
 <br> The PlayerDetails object contains data such as the nickname/persona-name, a URL for the player avatar, a URL for the player profile and the time since the player has last logged off in UNIX-time. A full description can be found here: https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29. 
 
-##Checking whether a player has shared match data
+## Checking whether a player has shared match data
 
 Simply specify the player's 32-bit or 64-bit steam-id: 
 ```
 	boolean isProfilePrivate = Utility.isProfilePrivate(<steam-id>); 
 ```
 
-##Getting hero names and portraits
+## Getting hero names and portraits
 
 Load the hero details map and specify the hero id:
 
@@ -225,7 +225,7 @@ The HeroResponse object returned in the map has the following properties:
     largeHorizontalPicURL - Large png. 
     largeVerticalPicURL - Large jpg. 
 
-##Getting lobby types
+## Getting lobby types
 
 Specify the lobby id: 
     
